@@ -14,9 +14,7 @@ def ListaRepElem(n: int) -> list:
     return lista
 
 
-# lst = ListaRepElem(1000)  # Comprimento array
-
-
+# Algoritmos
 def SolExaustiva(lista: list) -> float:
     start = time.time()
 
@@ -26,9 +24,6 @@ def SolExaustiva(lista: list) -> float:
                 end = time.time()
                 t = end - start
 
-                print("\n--------- SOLUCAO EXAUSTIVA ---------")
-                print(f"O valor repetido eh {lista[i]}, e esta nas posicoes {i} e {j}")
-                print(f"TEMPO DE EXECUCAO: {t}")
                 return t
 
 
@@ -41,9 +36,6 @@ def SolSort(lista: list) -> float:
             end = time.time()
             t = end - start
 
-            print("\n--------- SOLUCAO POR SORT ---------")
-            print(f"O valor repetido eh {lista[i]}, e esta nas posicoes {i} e {i + 1}")
-            print(f"TEMPO DE EXECUCAO: {t}")
             return t
 
 
@@ -62,10 +54,6 @@ def SolSoma(lista: list) -> float:
     end = time.time()
     t = end - start
 
-    print("\n--------- SOLUCAO POR SOMA ---------")
-    print(f"O valor repetido eh {elem}")
-    print(f"TEMPO DE EXECUCAO: {t}")
-
     return t
 
 
@@ -80,18 +68,27 @@ def MeanList(lista: list) -> float:
 
 
 # ------------------------------------------------ EXPERIMENTAÇÃO ------------------------------------------------------
-def Testes(nTestes: int, arraySize: int):
+lstArraySizes = [20000, 40000, 60000, 80000, 100000]
+
+
+def Testes(nTestes: int, arrayList: list):
     tExau = []
     tSoma = []
     tSort = []
 
-    for i in range(nTestes):
-        print(f"\n========== {i} ==========")
-        lst = ListaRepElem(arraySize)
+    for elem in arrayList:
+        for i in range(nTestes):
+            lst = ListaRepElem(elem)
 
-        tExau.append(SolExaustiva(lst))
-        tSort.append(SolSort(lst))
-        tSoma.append(SolSoma(lst))
+            tExau.append(SolExaustiva(lst))
+            tSort.append(SolSort(lst))
+            tSoma.append(SolSoma(lst))
+
+        print("\n============ DADOS DE EXECUCAO ============")
+        print(f"Numero de amostragem = {nTestes}. ArraySize = {elem}\n")
+        print(f"Média de tempo de SolExaust: {MeanList(tExau)}")
+        print(f"Média de tempo de SolSort: {MeanList(tSort)}")
+        print(f"Média de tempo de SolSoma: {MeanList(tSoma)}")
 
 
-Testes(3, 1000)
+Testes(1, lstArraySizes)
