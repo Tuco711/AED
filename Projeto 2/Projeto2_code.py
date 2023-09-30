@@ -1,7 +1,6 @@
 import random as rd
 import time
 
-
 # Criação da lista
 def ListaRepElem(n: int) -> list:
     lista = []
