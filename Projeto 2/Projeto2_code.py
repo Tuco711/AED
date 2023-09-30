@@ -1,5 +1,6 @@
 import random as rd
 import time
+import matplotlib.pyplot as plt
 
 # Criação da lista
 def ListaRepElem(n: int) -> list:
@@ -75,6 +76,8 @@ def Testes(nTestes: int, arrayList: list):
     tSoma = []
     tSort = []
 
+    plt.figure()
+
     for elem in arrayList:
         for i in range(nTestes):
             lst = ListaRepElem(elem)
@@ -82,6 +85,10 @@ def Testes(nTestes: int, arrayList: list):
             tExau.append(SolExaustiva(lst))
             tSort.append(SolSort(lst))
             tSoma.append(SolSoma(lst))
+
+        times = [MeanList(tExau), MeanList(tSort), MeanList(tSoma)]
+
+        plt.plot(elem)
 
         print("\n============ DADOS DE EXECUCAO ============")
         print(f"Numero de amostragem = {nTestes}. ArraySize = {elem}\n")
