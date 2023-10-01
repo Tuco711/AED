@@ -2,6 +2,7 @@ import random as rd
 import time
 import matplotlib.pyplot as plt
 
+tTOTALs = time.time()
 # Criação da lista
 def ListaRepElem(n: int) -> list:
     lista = []
@@ -68,13 +69,16 @@ def MeanList(lista: list) -> float:
 
 
 # ------------------------------------------------ EXPERIMENTAÇÃO ------------------------------------------------------
-lstArraySizes = [20000, 40000, 60000, 80000, 100000]
+lstArraySizes = [20000, 40000, 60000, 80000, 100000]  # 20000, 40000, 60000, 80000, 100000
 
 
 def Testes(nTestes: int, arrayList: list):
     tExau = []
     tSoma = []
     tSort = []
+    lstTExaut = []
+    lstTSort = []
+    lstTSoma = []
 
     plt.figure()
 
@@ -86,9 +90,9 @@ def Testes(nTestes: int, arrayList: list):
             tSort.append(SolSort(lst))
             tSoma.append(SolSoma(lst))
 
-        times = [MeanList(tExau), MeanList(tSort), MeanList(tSoma)]
-
-        plt.plot(elem)
+        lstTExaut.append(MeanList(tExau))
+        lstTSort.append(MeanList(tSort))
+        lstTSoma.append(MeanList(tSoma))
 
         print("\n============ DADOS DE EXECUCAO ============")
         print(f"Numero de amostragem = {nTestes}. ArraySize = {elem}\n")
@@ -96,5 +100,17 @@ def Testes(nTestes: int, arrayList: list):
         print(f"Média de tempo de SolSort: {MeanList(tSort)}")
         print(f"Média de tempo de SolSoma: {MeanList(tSoma)}")
 
+    plt.plot(lstArraySizes, lstTExaut, color='b', label='exaustiva')
+    plt.plot(lstArraySizes, lstTSort, color='r', label='Sort')
+    plt.plot(lstArraySizes, lstTSoma, color='g', label='Soma')
 
-Testes(1, lstArraySizes)
+    plt.xlabel('Array Size (n)')
+    plt.ylabel('Tempo')
+
+    plt.legend()
+    plt.show()
+
+
+Testes(5, lstArraySizes)
+tTOTALf = time.time()
+print(f"TEMPO TOTAL: {tTOTALf - tTOTALs}")
