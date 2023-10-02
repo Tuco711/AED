@@ -69,7 +69,7 @@ def MeanList(lista: list) -> float:
 
 
 # ------------------------------------------------ EXPERIMENTAÇÃO ------------------------------------------------------
-lstArraySizes = [20000, 40000, 60000, 80000, 100000]  # 20000, 40000, 60000, 80000, 100000
+lstArraySizes = [20000, 4000, 6000]  # 20000, 40000, 60000, 80000, 100000
 
 
 def Testes(nTestes: int, arrayList: list):
@@ -100,9 +100,9 @@ def Testes(nTestes: int, arrayList: list):
         print(f"Média de tempo de SolSort: {MeanList(tSort)}")
         print(f"Média de tempo de SolSoma: {MeanList(tSoma)}")
 
-    plt.plot(lstArraySizes, lstTExaut, color='b', label='exaustiva')
-    plt.plot(lstArraySizes, lstTSort, color='r', label='Sort')
-    plt.plot(lstArraySizes, lstTSoma, color='g', label='Soma')
+    plt.plot(lstArraySizes, lstTExaut, color='b', marker='o', label='exaustiva')
+    plt.plot(lstArraySizes, lstTSort, color='r', marker='*', label='Sort')
+    plt.plot(lstArraySizes, lstTSoma, color='g', marker='o', linestyle='dashed', label='Soma')
 
     plt.xlabel('Array Size (n)')
     plt.ylabel('Tempo')
@@ -111,6 +111,6 @@ def Testes(nTestes: int, arrayList: list):
     plt.show()
 
 
-Testes(5, lstArraySizes)
+Testes(1, lstArraySizes)
 tTOTALf = time.time()
 print(f"TEMPO TOTAL: {tTOTALf - tTOTALs}")
