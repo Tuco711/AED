@@ -1,11 +1,13 @@
+x = [20000 40000 60000 80000 100000];
+y = [0.0028690338134765626 0.005833101272583008 0.009419965744018554  0.014128947257995605  0.016724252700805665];
 
-n = [20000 40000 60000 80000 100000];
-tSort = [0.0028690338134765626 0.005833101272583008 0.009419965744018554  0.014128947257995605  0.016724252700805665];
-c2 = polyfit (n,tSort,2);
-xx2 = linspace (20000,100000,1000);
-p2 = polyval(c2,xx2);
+p = polyfit(x,y,1);
+yfit = polyval(p,x);
 
 hold on
-title('Algoritmo de Sort');
-plot(xx2,p2,'blue')
-hold off
+plot(x,yfit)
+scatter(x,y)
+
+title('Solução por Sort')
+legend('Regressão Linear', 'Pontos Reais')
+hold off 
